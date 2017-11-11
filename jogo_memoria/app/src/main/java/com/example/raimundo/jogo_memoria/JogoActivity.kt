@@ -45,6 +45,7 @@ class JogoActivity : AppCompatActivity() {
     }
 
     fun criaCartas() {
+
         var par = 0
         for (i in 1..MAX_IMAGENS + 1) {
             var c = Carta(i - 1, par, ImageButton(this))
