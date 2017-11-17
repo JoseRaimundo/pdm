@@ -93,7 +93,15 @@ class JogoActivity : AppCompatActivity() {
     fun onClick(view: View) {
         var carta_temp = view as ImageButton
 
-        if (status == 0) {
+
+        if (status == 0 || status == 2) {
+            if (status == 2){
+                carta1.capa.setBackgroundResource(image_capa)
+                carta1.capa.isClickable = true
+                carta2.capa.setBackgroundResource(image_capa)
+                carta2.capa.isClickable = true
+            }
+
             carta1 = this.loclaizaCarta(carta_temp.tag.toString().toInt())
             carta_temp.setBackgroundResource(imagens[carta1.par_carta])
             status = 1
@@ -105,14 +113,12 @@ class JogoActivity : AppCompatActivity() {
                 carta_temp.isClickable = false
                 this.cartasViradas++;
                 this.placar.acertou()
+                status = 0
             } else {
-                carta1.capa.setBackgroundResource(image_capa)
-                carta1.capa.isClickable = true
-                carta2.capa.setBackgroundResource(image_capa)
-                carta2.capa.isClickable = true
+
                 this.placar.errou()
+                status = 2
             }
-            status = 0
 
         }
         atualizaPlacar()
